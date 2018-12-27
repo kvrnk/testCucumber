@@ -41,11 +41,11 @@ public class JobTitlesPage {
         jobTitlesTab.click();
     }
 
-    public void deleteJobTitles() {
+    public void deleteJobTitles(int count) {
         if (titles.size() > 2) {
-            checkboxesOfTitles.get(0).click();
-            checkboxesOfTitles.get(1).click();
-            checkboxesOfTitles.get(2).click();
+            for(int i = 0; i < count; i++) {
+                checkboxesOfTitles.get(i).click();
+            }
             buttonDelete.click();
             (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(buttonOk));
             buttonOk.click();

@@ -1,0 +1,11 @@
+@all
+Feature: Personal Test
+
+  Scenario: role of admin
+    Given Login page under administrator rights
+    When We check the form and add the user
+    When Delete 3 Job Titles
+    When Add candidate
+    And Check Dashboard
+    Then Check personal details of any sales
+    And Logged off from the page
