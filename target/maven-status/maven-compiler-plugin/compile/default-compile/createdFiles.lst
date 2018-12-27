@@ -1,0 +1,7 @@
+pages\LoginPage.class
+pages\DashboardPage.class
+pages\LogoutPage.class
+pages\JobTitlesPage.class
+pages\CandidatesPage.class
+pages\PimPage.class
+pages\UserManagementPage.class
