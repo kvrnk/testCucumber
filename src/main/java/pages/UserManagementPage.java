@@ -22,12 +22,12 @@ public class UserManagementPage {
     private WebDriver driver;
     private String helpText1 = "Very Weak";
     private String helpText2 = "For a strong password, please use a hard to guess combination of text with upper and lower case characters, symbols and numbers";
-    private String validationError1 = "Invalid";
+    private String validationError1 = "Employee does not exist";
     private String validationError2 = "Should have at least 5 characters";
     private String validationError3 = "Should have at least 8 characters";
     private String validationError4 = "Please enter at least 8 characters.";
     private String employeeName = "Fiona Grace";
-    private String userName = "Fiona.grace1111";
+    private String userName = "Fiona.grace11111";
     private String password = "123456789";
 
     public UserManagementPage(WebDriver driver) {

@@ -23,33 +23,15 @@ public class Steps {
     public PimPage pimPage;
     public String baseUrl;
 
-    @Before
-    public void setup() {
+    @Given("^Login page under administrator rights$")
+    public void login_page_under_administrator_rights() {
         System.getProperty("java.classpath");
         System.setProperty("webdriver.chrome.driver", "D:\\Projects\\chromedriver.exe");
         driver = new ChromeDriver();
+        baseUrl = "https://opensource-demo.orangehrmlive.com/index.php/auth/login";
+        driver.get(baseUrl);
 
         loginPage = new LoginPage(driver);
-        logoutPage = new LogoutPage(driver);
-        jobTitlesPage = new JobTitlesPage(driver);
-        userManagementPage = new UserManagementPage(driver);
-        candidatesPage = new CandidatesPage(driver);
-        dashboardPage = new DashboardPage(driver);
-        pimPage = new PimPage(driver);
-
-        baseUrl = "https://opensource-demo.orangehrmlive.com/index.php/auth/login";
-        driver.manage().timeouts().implicitlyWait(5, SECONDS);
-        driver.get(baseUrl);
-    }
-
-    @After
-    public void shutDown() {
-        driver.quit();
-    }
-
-
-    @Given("^Login page under administrator rights$")
-    public void login_page_under_administrator_rights() {
         loginPage.inputLogin("admin");
         loginPage.inputPassword("admin123");
         loginPage.clickLogin();
@@ -57,6 +39,7 @@ public class Steps {
 
     @When("^We check the form and add the user$")
     public void we_check_the_form_and_add_the_user() {
+        userManagementPage = new UserManagementPage(driver);
         userManagementPage.toFormAddUser();
         userManagementPage.checkForm();
         userManagementPage.addUser();
@@ -64,24 +47,28 @@ public class Steps {
 
     @When("^Delete (\\d+) Job Titles$")
     public void delete_Job_Titles(int count) {
+        jobTitlesPage = new JobTitlesPage(driver);
         jobTitlesPage.toFormJobTitles();
         jobTitlesPage.deleteJobTitles(count);
     }
 
     @When("^Add candidate$")
     public void add_candidate() {
+        candidatesPage = new CandidatesPage(driver);
         candidatesPage.toFormCandidates();
         candidatesPage.addCandidate();
     }
 
     @When("^Check Dashboard$")
     public void check_Dashboard() {
+        dashboardPage = new DashboardPage(driver);
         dashboardPage.toFormDashboard();
         dashboardPage.checkForm();
     }
 
     @Then("^Check personal details of any sales$")
     public void check_personal_details_of_any_sales() {
+        pimPage = new PimPage(driver);
         pimPage.toFormPIM();
         pimPage.chooseUnit();
         pimPage.checkForm();
@@ -89,7 +76,9 @@ public class Steps {
 
     @Then("^Logged off from the page$")
     public void logged_off_from_the_page() {
+        logoutPage = new LogoutPage(driver);
         logoutPage.toLogout();
         logoutPage.clickLogout();
+        driver.quit();
     }
 }
